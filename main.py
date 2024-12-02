@@ -4,7 +4,17 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import gdown
 
-message = "Os valores apresentados nas planilhas referem-se ao total (geral e por tipo de resíduo), por mês e ano, em toneladas, de resíduos sólidos coletados pelas empresas e concessionárias do serviço público participantes do Sistema de Limpeza Urbana da cidade de São Paulo. Nestes dados estão incluídos somente resíduos sólidos urbanos coletados pelo sistema público, não contemplando os volumes de resíduos do setor privado,dos grandes geradores (gerador que produz de lixo comum ou domiciliar, acima de 200 litros, como padarias, lanchonetes comércios e indústrias) e do sistema de logística reversa."
+message = """
+<div style="text-align: justify;">
+Os valores apresentados nas planilhas referem-se ao total (geral e por tipo de resíduo), por mês e ano, em toneladas, de resíduos sólidos coletados pelas empresas e concessionárias do serviço público participantes do Sistema de Limpeza Urbana da cidade de São Paulo. 
+Os dados analisados abrangem os anos de <strong>2013 a 2020</strong>, permitindo uma visão temporal das variações e tendências na coleta de resíduos sólidos na cidade.
+
+Nestes dados estão incluídos somente resíduos sólidos urbanos coletados pelo sistema público, não contemplando os volumes de resíduos do setor privado, dos grandes geradores (geradores que produzem acima de 200 litros de lixo comum ou domiciliar, como padarias, lanchonetes, comércios e indústrias) e do sistema de logística reversa. 
+
+Além disso, o estudo destaca a coleta de diferentes tipos de resíduos, como lixo domiciliar, entulho e restos de poda, evidenciando a predominância do lixo domiciliar como principal tipo coletado. Este levantamento fornece subsídios importantes para a elaboração de políticas públicas de gerenciamento de resíduos, bem como para iniciativas de redução, reciclagem e reaproveitamento, visando a sustentabilidade ambiental e a eficiência do sistema de limpeza urbana de São Paulo.
+</div>
+"""
+
 
 def baixar_arquivo(ano):
 
@@ -37,25 +47,39 @@ def baixar_arquivo(ano):
     return df
 
 
+
+url_imagem = 'https://images.even3.com/s0wEPJKo7O8zF6dk3lUq79KWry8=/fit-in/250x250/smart/even3.blob.core.windows.net/logos/marca_UJ_2019_VERTICAL_Colorida_Prancheta1.0c8ff47c70f94f41aae7.png'
+
+
+st.markdown(f"""
+<div style="text-align: center;">
+    <img src="{url_imagem}" width="250" />
+</div>
+""", unsafe_allow_html=True)
+
+
+
 st.title("AV3 - Programação de Sistemas Especialistas\nProjeto: Análise de Dados de Resíduos Sólidos (São Paulo - SP)")
 
 
-st.subheader("Integrantes da Equipe")
-st.write("Danilo Ribeiro, Esdras Wendel, Renoir Auguste")
 
-st.write("________________________________________")
+st.subheader("""
+            
+            Equipe: Danilo Ribeiro, Esdras Wendel e Renoir Auguste
+            
+            """)
+st.subheader("Orientador: Igor González Pimenta")
 
 
-st.subheader("""Alguns esclarecimentos referente ao Projeto
-             http://dados.prefeitura.sp.gov.br/it/dataset/coleta-de-residuos-solidos-urbanos""")
+st.header("Introdução")
 
-st.write(message)
+
+st.markdown(message, unsafe_allow_html=True)
 
 
 def plot_residuos_por_ano(ano):
-    st.header(f"Ano: {ano}")
+    st.subheader(f"Coleta de Resíduos Sólidos: {ano}")
     
-  
     df = baixar_arquivo(ano)
     
     if df is not None:
@@ -70,7 +94,7 @@ def plot_residuos_por_ano(ano):
         residuos_media = np.mean(residuos_array, axis=0)
         
         
-        st.subheader("Tabela de Dados")
+        st.subheader("Extração e Tratamento dos Dados - Pandas")
         df_rounded = df.round(2)
         st.dataframe(df_rounded, use_container_width=True)
 
@@ -170,7 +194,32 @@ def plot_residuos_por_ano(ano):
         plt.tight_layout()
         st.pyplot(plt)
 
+        st.header("Conclusão")
+        st.subheader("Considerações finais do Projeto")
+        st.subheader("Conclusão")
+
+        st.markdown("""
+<div style="text-align: justify;">
+A análise dos resíduos sólidos coletados na cidade de São Paulo revela padrões importantes sobre a gestão de resíduos urbanos. 
+Um dos principais destaques é a predominância do <strong>lixo domiciliar</strong>, que representa a maior parcela entre os tipos de resíduos coletados. 
+Esse padrão reflete o comportamento e o volume gerado diretamente pela população, indicando que o gerenciamento do lixo residencial é o maior desafio para o sistema público.
+
+A concentração do lixo domiciliar como principal contribuinte é consistente em todos os anos analisados, o que reforça a necessidade de políticas públicas voltadas para <strong>educação ambiental</strong> e <strong>incentivo à reciclagem</strong>. 
+A criação de programas de separação na fonte e iniciativas de compostagem também poderiam reduzir o volume total e aumentar a eficiência do sistema.
+
+Por outro lado, os dados também indicam uma menor representatividade de outros resíduos sólidos, como entulho e restos de poda, o que pode ser atribuído a volumes gerados principalmente por grandes geradores, que não estão incluídos na coleta pública. 
+Isso destaca a importância de iniciativas específicas para lidar com esses resíduos, como sistemas de logística reversa e programas de coleta especializados.
+
+Em resumo, a gestão do lixo domiciliar deve ser priorizada, tanto pela sua relevância em volume quanto pelo impacto direto na eficiência da limpeza urbana. 
+A implementação de ações coordenadas, envolvendo educação, infraestrutura e parcerias público-privadas, será essencial para tornar o sistema de resíduos da cidade mais sustentável.
+</div>
+""", unsafe_allow_html=True)
+
+
+
 
 ano_selecionado = st.sidebar.selectbox("Selecione o Ano", options=[2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020])
+
+
 
 plot_residuos_por_ano(ano_selecionado)
