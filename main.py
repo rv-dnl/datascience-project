@@ -214,6 +214,15 @@ Em resumo, a gestão do lixo domiciliar deve ser priorizada, tanto pela sua rele
 A implementação de ações coordenadas, envolvendo educação, infraestrutura e parcerias público-privadas, será essencial para tornar o sistema de resíduos da cidade mais sustentável.
 </div>
 """, unsafe_allow_html=True)
+        
+
+        st.subheader("Referências")
+        st.write(" Base de Dados + Repositório (Github)")                
+        st.write("http://dados.prefeitura.sp.gov.br/it/dataset/coleta-de-residuos-solidos-urbanos")
+        st.write("https://github.com/rv-dnl/datascience-project/blob/main/main.py")
+    
+        
+
 
 
 
