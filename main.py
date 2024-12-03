@@ -4,6 +4,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import gdown
 
+# Configuração do Streamlit
+st.set_page_config(page_title="Análise de Resíduos SP", layout="wide")
+
 message = """
 <div style="text-align: justify;">
 Os valores apresentados nas planilhas referem-se ao total (geral e por tipo de resíduo), por mês e ano, em toneladas, de resíduos sólidos coletados pelas empresas e concessionárias do serviço público participantes do Sistema de Limpeza Urbana da cidade de São Paulo. 
@@ -48,11 +51,36 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-st.title("AV3 - Programação de Sistemas Especialistas\nProjeto: Análise de Dados de Resíduos Sólidos (São Paulo - SP)")
+st.title("Análise da Gestão de Resíduos Sólidos em São Paulo")
 st.subheader("""
-            Equipe: Danilo Ribeiro, Esdras Wendel e Renoir Auguste
-            """)
-st.subheader("Orientador: Igor González Pimenta")
+                **AV3** - Sistema de Gerenciamento de Resíduos (ODS 12)\n
+                **Projeto** Integrado das disciplinas: Sistemas Especialistas, Análise Orientada a Objetos, Modelagem e Simulação Matemática\n
+                **Equipe:** Danilo Ribeiro, Esdras Wendel e Renoir Auguste\n
+                **Professores:** Caio Eduardo, Diego Passos e Igor González Pimenta\n
+                **Faculdade:** Unijorge\n            """)
+
+st.markdown(""" 
+        ### Objetivo
+        Este projeto visa desenvolver um software orientado a objeto para gerenciar e analisar dados relacionados à gestão de resíduos, oferecendo assim uma análise interativa dos dados de coleta de resíduos sólidos em São Paulo, permitindo:
+        - **Monitoramento dos resíduos coletados.**
+        - **Compreender os padrões de geração de resíduos ao longo do tempo.**
+        - **Identificar os tipos de resíduos com maior volume coletado.**
+        - **Gerar insights para aprimorar a gestão de resíduos urbanos.**
+        
+        ### Sobre os Dados
+        Os dados utilizados foram extraídos de relatórios oficiais da cidade de São Paulo, abrangendo o período de **2013 a 2020**.
+        
+        ### Resultados e Benefícios
+        A análise revela que o **lixo domiciliar** é o tipo de resíduo mais prevalente na coleta, destacando-se como o maior desafio para o sistema público de gestão de resíduos. Esse padrão se mantém consistente ao longo dos anos, evidenciando a necessidade de políticas públicas focadas em **educação ambiental** e **incentivo à reciclagem**.
+        
+        A implementação de programas de separação na fonte e de iniciativas de compostagem pode ajudar a reduzir o volume total de resíduos, aumentando a eficiência do sistema de coleta. Por outro lado, a menor representatividade de outros tipos de resíduos, como entulho e restos de poda, sugere que sua origem está em grandes geradores que não são atendidos pela coleta pública. Isso aponta para a importância de desenvolver iniciativas específicas, como sistemas de logística reversa e programas de coleta especializada, para tratar esses resíduos de forma eficaz.
+        
+        ### Benefícios da Análise
+        - **Apoio na tomada de decisões** para políticas públicas.
+        - Identificação de oportunidades para **reciclagem e reutilização**.
+        - **Aumento da conscientização ambiental**.
+    """)
+
 st.header("Introdução")
 st.markdown(message, unsafe_allow_html=True)
 
@@ -169,22 +197,15 @@ def plot_residuos_por_ano(ano):
 
         st.header("Conclusão")
         st.subheader("Considerações finais do Projeto")
-        st.subheader("Conclusão")
 
         st.markdown("""
 <div style="text-align: justify;">
-A análise dos resíduos sólidos coletados na cidade de São Paulo revela padrões importantes sobre a gestão de resíduos urbanos. 
-Um dos principais destaques é a predominância do <strong>lixo domiciliar</strong>, que representa a maior parcela entre os tipos de resíduos coletados. 
-Esse padrão reflete o comportamento e o volume gerado diretamente pela população, indicando que o gerenciamento do lixo residencial é o maior desafio para o sistema público.
-
-A concentração do lixo domiciliar como principal contribuinte é consistente em todos os anos analisados, o que reforça a necessidade de políticas públicas voltadas para <strong>educação ambiental</strong> e <strong>incentivo à reciclagem</strong>. 
-A criação de programas de separação na fonte e iniciativas de compostagem também poderiam reduzir o volume total e aumentar a eficiência do sistema.
-
-Por outro lado, os dados também indicam uma menor representatividade de outros resíduos sólidos, como entulho e restos de poda, o que pode ser atribuído a volumes gerados principalmente por grandes geradores, que não estão incluídos na coleta pública. 
-Isso destaca a importância de iniciativas específicas para lidar com esses resíduos, como sistemas de logística reversa e programas de coleta especializados.
-
-Em resumo, a gestão do lixo domiciliar deve ser priorizada, tanto pela sua relevância em volume quanto pelo impacto direto na eficiência da limpeza urbana. 
-A implementação de ações coordenadas, envolvendo educação, infraestrutura e parcerias público-privadas, será essencial para tornar o sistema de resíduos da cidade mais sustentável.
+A análise dos resíduos sólidos coletados na cidade de São Paulo revela padrões cruciais para a gestão de resíduos urbanos. 
+A predominância do lixo domiciliar destaca-se como o principal tipo de resíduo, refletindo o comportamento e o volume gerado pela população. Essa constatação indica que a gestão de resíduos residenciais é o maior desafio enfrentado pelo sistema público de coleta.
+Essa concentração de lixo domiciliar é consistente ao longo dos anos analisados, evidenciando a necessidade de políticas públicas eficazes que promovam educação ambiental e incentivem a reciclagem. Programas de separação na fonte e iniciativas de compostagem podem desempenhar um papel fundamental na redução do volume de resíduos e no aumento da eficiência do sistema de coleta.
+Por outro lado, os dados também destacam uma menor participação de outros tipos de resíduos, como entulho e restos de poda, o que sugere que esses volumes são oriundos de grandes geradores não atendidos pela coleta pública. Isso aponta para a necessidade de desenvolver soluções específicas para lidar com esses resíduos, como sistemas de logística reversa e programas de coleta especializada.
+Portanto, é essencial que a gestão do lixo domiciliar seja uma prioridade, dada sua importância em termos de volume e impacto na eficiência da limpeza urbana. A implementação de ações coordenadas, que envolvam educação, infraestrutura e parcerias público-privadas, será fundamental para tornar o sistema de gestão de resíduos de São Paulo mais sustentável e eficiente.
+Explore as páginas no menu lateral para interagir com os gráficos e obter insights detalhados sobre a gestão de resíduos na cidade.
 </div>
 """, unsafe_allow_html=True)
         
